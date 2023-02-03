@@ -4,6 +4,8 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
+const linkDetalhes = { name: 'More details' };
+
 describe('Testes do componente <Pokemon.js />', () => {
   it('Verifica se é renderizado um card com as informações do Pokémon:', () => {
     renderWithRouter(<App />);
@@ -25,7 +27,7 @@ describe('Testes do componente <Pokemon.js />', () => {
     + 'para exibir detalhes deste.', () => {
     renderWithRouter(<App />);
 
-    const linkMoreDetails = screen.getByRole('link', { name: 'More details' });
+    const linkMoreDetails = screen.getByRole('link', linkDetalhes);
 
     expect(linkMoreDetails.href).toContain('/pokemon/25');
   });
@@ -34,7 +36,7 @@ describe('Testes do componente <Pokemon.js />', () => {
     + 'feito o redirecionamento para a página de detalhes de Pokémon', () => {
     renderWithRouter(<App />);
 
-    const linkMoreDetails = screen.getByRole('link', { name: 'More details' });
+    const linkMoreDetails = screen.getByRole('link', linkDetalhes);
     userEvent.click(linkMoreDetails);
 
     const tituloDetails = screen.getByRole('heading', { name: 'Pikachu Details' });
@@ -51,7 +53,7 @@ describe('Testes do componente <Pokemon.js />', () => {
     + 'onde <id> é o id do Pokémon', () => {
     const { history } = renderWithRouter(<App />);
 
-    const linkMoreDetails = screen.getByRole('link', { name: 'More details' });
+    const linkMoreDetails = screen.getByRole('link', linkDetalhes);
     userEvent.click(linkMoreDetails);
 
     const { pathname } = history.location;
@@ -62,7 +64,7 @@ describe('Testes do componente <Pokemon.js />', () => {
   it('Verifica se existe um ícone de estrela nos Pokémon favoritados', () => {
     renderWithRouter(<App />);
 
-    const linkMoreDetails = screen.getByRole('link', { name: 'More details' });
+    const linkMoreDetails = screen.getByRole('link', linkDetalhes);
     userEvent.click(linkMoreDetails);
 
     const checkboxFavoritado = screen.getByLabelText('Pokémon favoritado?');

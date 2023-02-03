@@ -6,16 +6,20 @@ import renderWithRouter from '../renderWithRouter';
 describe('Testes do componente <About.js />', () => {
   it('Verifica se a página contém o título "About Pokédex"', () => {
     renderWithRouter(<About />);
+
     const tituloAbout = screen.getByRole('heading', { name: 'About Pokédex' });
+
     expect(tituloAbout).toBeInTheDocument();
   });
 
   it('Verifica se a página tem dois parágrafos com texto sobre a Pokédex', () => {
     renderWithRouter(<About />);
+
     const paragrafoUm = screen.getByText(
       'This application simulates a Pokédex, a '
         + 'digital encyclopedia containing all Pokémon',
     );
+
     const paragrafoDois = screen.getByText(
       'One can filter Pokémon by type, '
       + 'and see more details for each one of them',
@@ -26,7 +30,9 @@ describe('Testes do componente <About.js />', () => {
 
   it('Verifica se a página contém a imagem específica de uma Pokédex', () => {
     renderWithRouter(<About />);
+
     const imagemPokedex = screen.getByAltText('Pokédex');
+
     expect(imagemPokedex).toHaveAttribute('src');
     expect(imagemPokedex.src).toContain(
       'https://cdn2.bulbagarden.net/upload/thumb/8/86/'
