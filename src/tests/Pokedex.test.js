@@ -83,6 +83,8 @@ describe('Testes do componente <Pokedex.js />', () => {
     expect(linkDetalhesPokemon.href).not.toContain(idPikachu);
     expect(linkDetalhesPokemon.href).toContain('/pokemon/4');
 
-    expect(botaoAll).toBeInTheDocument();
+    userEvent.click(botaoAll);
+
+    expect(linkDetalhesPokemon.href).toContain(idPikachu);
   });
 });
